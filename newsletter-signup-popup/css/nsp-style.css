@@ -1,0 +1,33 @@
+#nsp-popup {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 30px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    z-index: 9999;
+    width: 400px;
+    border-radius: 5px;
+    position: fixed;
+}
+
+.nsp-hidden {
+    display: none;
+}
+
+#nsp-close {
+    cursor: pointer;
+    font-size: 20px;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    margin-top: -10;
+}
+
+
+#nsp-popup, 
+#nsp-popup-content {
+    box-sizing: border-box;
+    max-width: 100%;
+}
