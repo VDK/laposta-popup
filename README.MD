@@ -36,7 +36,7 @@ add_filter('template_include', 'custom_laposta_template');
 
 Once configured, you can trigger the popup by adding this link anywhere on your site:
 ```html
-<a href="#" id="nsp-open">Sign up for my newsletter!</a>
+<a href="#" id="nsp-open">Sign up for my newsletter!</a> 
 ```
 
 ### Language Support
