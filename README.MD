@@ -32,14 +32,14 @@ add_filter('template_include', 'custom_laposta_template');
 * This ensures that pages assigned the **Laposta Theme (form page)** will load correctly.
 * You can modify `laposta-form-style.css` to better match your theme's styling.
 
-###How to Add the Newsletter Link
+### How to Add the Newsletter Link
 
 Once configured, you can trigger the popup by adding this link anywhere on your site:
 ```html
 <a href="#" id="nsp-open">Sign up for my newsletter!</a>
 ```
 
-###Language Support
+### Language Support
 The plugin only loads languages that are both **configured in the site's frontend** and **supported by Laposta**. It checks:
 
 * **WPML**: Uses `icl_get_languages()`
@@ -49,13 +49,13 @@ The plugin only loads languages that are both **configured in the site's fronten
 Supported Languages:
 ✅ Dutch (`nl`), English (`en`), German (`de`), Spanish (`es`), French (`fr`)
 
-###Notes
+### Notes
 * Ensure the **Laposta Signup Basic plugin** is installed and configured.
 * The popup will not appear unless at least **one language page** is set in the plugin settings.
 * The template file (`laposta-theme.php`) must be structured correctly to display only the signup form.
 * You can modify `laposta-form-style.css` to fit your theme’s design.
 
-###Troubleshooting
+### Troubleshooting
 
 * **Popup not appearing?** Ensure you have set the correct pages in **Settings → Laposta Popup**.
 * **Form page loading incorrectly?** Verify that `laposta-theme.php` exists in your theme and is correctly referenced in `functions.php`.
