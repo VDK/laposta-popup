@@ -23,13 +23,20 @@ function nsp_enqueue_scripts() {
     $page_ids = [];
     foreach ($supported_languages as $lang_code) {
         $page_id = get_option("nsp_page_id_$lang_code", '');
-        if ($page_id) {
+        // If the page exists and is published, keep it
+        if ($page_id && get_post_status($page_id) === 'publish') {
             $page_ids[] = (int) $page_id;
         }
+        // If the page is missing or trashed, reset the option
+        elseif ($page_id && get_post_status($page_id) !== 'publish') {
+            update_option("nsp_page_id_$lang_code", ''); // Reset only invalid pages
+        }
     }
+    // Prevent recursion even if no pages are left
     if (!empty($page_ids) && is_page($page_ids)) {
         return; // Don't add the popup if it's inside the iframe
     }
+
     wp_enqueue_style('nsp-style', plugin_dir_url(__FILE__) . 'css/nsp-style.css');
     wp_enqueue_script('nsp-script', plugin_dir_url(__FILE__) . 'js/nsp-script.js', array('jquery'), null, true);
 }
@@ -124,9 +131,22 @@ function nsp_get_newsletter_url() {
     $locale = substr(get_locale(), 0, 2);
     $page_id = get_option("nsp_page_id_$locale", '');
 
-    if (!$page_id || is_page((int) $page_id)) {
-        return ''; // Return empty string if no page is set, or if the page is the popup itself
+    // If no page is set, return empty
+    if (!$page_id) {
+        return '';
     }
+
+    // If the page no longer exists, reset the ID and return empty
+    if (get_post_status($page_id) !== 'publish') {
+        update_option("nsp_page_id_$locale", ''); // Reset if invalid
+        return '';
+    }
+
+    // Prevent recursion: If this function is called inside the popup itself, return empty
+    if (is_page((int) $page_id)) {
+        return '';
+    }
+
     return esc_url(get_permalink((int) $page_id));
 }
 
