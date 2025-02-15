@@ -1,8 +1,8 @@
 jQuery(document).ready(function ($) {
     //enable "Sign up for my newsletter" hyperlink
-    document.getElementById("nsp-open").addEventListener("click", function(event) {
+    $(".nsp-open").on("click", function (event) {
         event.preventDefault();
-        document.getElementById("nsp-popup").style.display = "block";
+        $("#nsp-popup").fadeIn();
     });
 
     // Listen for "succes" messages from the iframe

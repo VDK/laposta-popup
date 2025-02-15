@@ -3,7 +3,7 @@
 Plugin Name: Laposta Newsletter Signup Popup
 Plugin URI: https://github.com/VDK/laposta-popup/
 Description: Displays a 'Sign up for my newsletter' lightbox after users scroll down or when a link is clicked. Works with the Laposta Signup Basic plugin.
-Version: 1.0
+Version: 1.1
 Author: Vera de Kok
 Author URI: https://www.veradekok.nl/
 License: GPL2
@@ -168,4 +168,19 @@ function nsp_lightbox_markup() {
     <?php
 }
 add_action('wp_footer', 'nsp_lightbox_markup');
+
+// Shortcode to insert a newsletter popup button
+function nsp_popup_shortcode($atts) {
+    $atts = shortcode_atts(
+        array(
+            'text' => 'Sign up for my newsletter!', // Default button text
+        ), 
+        $atts, 
+        'laposta_popup_button'
+    );
+
+    return '<a href="#" class="nsp-open">' . esc_html($atts['text']) . '</a>';
+}
+add_shortcode('laposta_popup_button', 'nsp_popup_shortcode');
+
 ?>

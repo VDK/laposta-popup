@@ -35,9 +35,16 @@ add_filter('template_include', 'custom_laposta_template');
 ## How to Add the Newsletter Link
 
 Once configured, you can trigger the popup by adding this link anywhere on your site:
+
 ```html
-<a href="#" id="nsp-open">Sign up for my newsletter!</a> 
+<a href="#" class="nsp-open">Sign up for my newsletter!</a> 
 ```
+Alternatively, you can use the WordPress shortcode:
+```
+[laposta_popup_button text="Sign up for my newsletter!"]
+```
+
+This will insert a clickable button that triggers the popup.
 
 ## Language Support
 The plugin only loads languages that are both **configured in the site's frontend** and **supported by Laposta**. It checks:
@@ -46,7 +53,7 @@ The plugin only loads languages that are both **configured in the site's fronten
 * **Polylang**: Uses `pll_get_languages()`
 * **Default WordPress Locale**: Uses `get_locale()`
 
-Supported Languages:
+### Supported Languages:
 ✅ Dutch (`nl`), English (`en`), German (`de`), Spanish (`es`), French (`fr`)
 
 ## Notes
